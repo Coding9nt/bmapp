@@ -1,4 +1,4 @@
 package com.baseballmanager.bmapp.service;
 
-public class OutPlayerService {
+public interface OutPlayerService {
 }
