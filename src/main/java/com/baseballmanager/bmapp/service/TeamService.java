@@ -1,4 +1,4 @@
 package com.baseballmanager.bmapp.service;
 
-public class TeamService {
+public interface TeamService {
 }

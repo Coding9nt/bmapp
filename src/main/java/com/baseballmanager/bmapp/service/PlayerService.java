@@ -1,4 +1,5 @@
 package com.baseballmanager.bmapp.service;
 
-public class PlayerService {
+public interface PlayerService {
+    public void example();
 }
