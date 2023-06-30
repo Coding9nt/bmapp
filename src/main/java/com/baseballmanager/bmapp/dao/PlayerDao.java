@@ -33,13 +33,15 @@ public class PlayerDao {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                Long id = resultSet.getLong("id");
-                Long teamId = resultSet.getLong("team_id");
-                String name = resultSet.getString("name");
+                int id = resultSet.getInt("id");
+                String name = resultSet.getString("p_name");
                 String position = resultSet.getString("position");
                 LocalDateTime createdAt = resultSet.getTimestamp("created_at").toLocalDateTime();
-                //Player player = new Player(id, teamId, name, position, createdAt);
-                //players.add(player);
+                int teamId = resultSet.getInt("team_id");
+                System.out.println("test:" + id);
+                System.out.println("test:" + name);
+                Player player = new Player(id,name, position, createdAt, teamId);
+                players.add(player);
             }
         } catch (Exception e) {
             e.printStackTrace();
