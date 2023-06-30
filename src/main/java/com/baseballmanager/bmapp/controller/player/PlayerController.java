@@ -3,23 +3,20 @@ package com.baseballmanager.bmapp.controller.player;
 import com.baseballmanager.bmapp.model.Player;
 import com.baseballmanager.bmapp.service.PlayerService;
 import com.baseballmanager.bmapp.service.impl.PlayerServiceImpl;
+import lombok.RequiredArgsConstructor;
+
 import java.util.List;
 
-
+@RequiredArgsConstructor
 public class PlayerController {
-    private PlayerService playerService;
-
-    public PlayerController() {
-        playerService = new PlayerServiceImpl();
-    }
+    private final PlayerService playerService;
 
     public void handleRequest(String request) {
-        System.out.println("test");
         if (request.startsWith("선수등록?")) {
-            String playerInfo = request.substring(6); // Extract player information from the request
+            String playerInfo = request.substring(5); // Extract player information from the request
 
             // Extract teamId, name, and position from player information
-            Long teamId = null;
+            int teamId = 0;
             String name = null;
             String position = null;
 
@@ -32,8 +29,7 @@ public class PlayerController {
 
                     switch (key) {
                         case "teamId":
-                            teamId = Long.parseLong(value);
-                            System.out.println(value);
+                            teamId = Integer.parseInt(value);
                             break;
                         case "name":
                             name = value;
@@ -45,8 +41,8 @@ public class PlayerController {
                 }
             }
 
-            if (teamId != null && name != null && position != null) {
-                boolean result = playerService.registerPlayer(teamId, name, position);
+            if (teamId != 0 && name != null && position != null) {
+                boolean result = playerService.registerPlayer(name, position,teamId);
 
                 if (result) {
                     System.out.println("Success: 선수 등록 성공");

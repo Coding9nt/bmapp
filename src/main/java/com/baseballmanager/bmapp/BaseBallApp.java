@@ -2,7 +2,10 @@ package com.baseballmanager.bmapp;
 
 
 import com.baseballmanager.bmapp.controller.player.PlayerController;
+import com.baseballmanager.bmapp.dao.PlayerDao;
 import com.baseballmanager.bmapp.model.Player;
+import com.baseballmanager.bmapp.service.PlayerService;
+import com.baseballmanager.bmapp.service.impl.PlayerServiceImpl;
 import com.baseballmanager.bmapp.view.PlayerView;
 
 import java.util.List;
@@ -11,8 +14,13 @@ import java.util.Scanner;
 public class BaseBallApp {
 	private static PlayerController playerController;
 
+
 	public static void main(String[] args) {
-		playerController = new PlayerController();
+		playerController = new PlayerController(
+				new PlayerServiceImpl(
+						new PlayerDao()
+				)
+		);
 		appStart();
 	}
 

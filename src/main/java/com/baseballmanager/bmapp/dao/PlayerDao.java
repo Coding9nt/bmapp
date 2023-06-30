@@ -12,14 +12,14 @@ public class PlayerDao {
     public int insert(Player player) {
         int result = 0;
         try (Connection connection = DBConnection.getConnection()) {
-            String query = "INSERT INTO players (team_id, name, position, created_at) VALUES (?, ?, ?, ?)";
+            String query = "INSERT INTO player (p_name , position, created_at,team_id ) VALUES (?, ?, ?, ?)";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setLong(1, player.getTeamId());
-            preparedStatement.setString(2, player.getName());
-            preparedStatement.setString(3, player.getPosition());
-            preparedStatement.setTimestamp(4, Timestamp.valueOf(player.getCreatedAt()));
-            System.out.println("DB Insert 완료!");
+            preparedStatement.setString(1, player.getName());
+            preparedStatement.setString(2, player.getPosition());
+            preparedStatement.setTimestamp(3, Timestamp.valueOf(player.getCreatedAt()));
+            preparedStatement.setInt(4, player.getTeamId());
             result = preparedStatement.executeUpdate();
+            System.out.println("DB Insert 완료!");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -29,7 +29,7 @@ public class PlayerDao {
     public List<Player> getAllPlayers() {
         List<Player> players = new ArrayList<>();
         try (Connection connection = DBConnection.getConnection()) {
-            String query = "SELECT * FROM players";
+            String query = "SELECT * FROM player";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
@@ -38,8 +38,8 @@ public class PlayerDao {
                 String name = resultSet.getString("name");
                 String position = resultSet.getString("position");
                 LocalDateTime createdAt = resultSet.getTimestamp("created_at").toLocalDateTime();
-                Player player = new Player(id, teamId, name, position, createdAt);
-                players.add(player);
+                //Player player = new Player(id, teamId, name, position, createdAt);
+                //players.add(player);
             }
         } catch (Exception e) {
             e.printStackTrace();

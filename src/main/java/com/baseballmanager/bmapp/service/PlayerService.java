@@ -5,6 +5,6 @@ import com.baseballmanager.bmapp.model.Player;
 import java.util.List;
 
 public interface PlayerService {
-    boolean registerPlayer(Long teamId, String name, String position);
+    boolean registerPlayer(String name, String position,int teamId);
     List<Player> getAllPlayers();
 }
