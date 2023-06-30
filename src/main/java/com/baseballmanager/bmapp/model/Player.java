@@ -2,26 +2,20 @@ package com.baseballmanager.bmapp.model;
 
 
 import lombok.*;
-import org.springframework.data.annotation.CreatedDate;
 
-import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Getter
 @ToString
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Entity
-@Table(name = "player_tb")
+
 public class Player {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "p_name", nullable = false)
+
     private String name;
-    @Column(unique = true)
+
     private String position;
-    @CreatedDate
-    @Column(columnDefinition = "timestamp", nullable = false)
+
     private LocalDateTime createdAt;
     private Long teamId;
 
