@@ -2,9 +2,9 @@ package com.baseballmanager.bmapp.service.impl;
 
 import com.baseballmanager.bmapp.model.Player;
 import com.baseballmanager.bmapp.service.PlayerService;
-import org.springframework.stereotype.Service;
 
-@Service
+
+
 public class PlayerServiceImpl implements PlayerService {
     public void example() {
         final Player player = Player.builder()
