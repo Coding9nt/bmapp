@@ -1,24 +1,30 @@
 package com.baseballmanager.bmapp.service.impl;
 
+import com.baseballmanager.bmapp.dao.PlayerDao;
 import com.baseballmanager.bmapp.model.Player;
 import com.baseballmanager.bmapp.service.PlayerService;
-import org.springframework.stereotype.Service;
 
-@Service
+import java.time.LocalDateTime;
+import java.util.List;
+
+
 public class PlayerServiceImpl implements PlayerService {
-    public void example() {
-        final Player player = Player.builder()
-                .name("박민기")
-                .position("포수")
-                .build();
+    private PlayerDao playerDao;
 
-        // 팀추가
-        player.enrollTeam(1L);
-        System.out.println(player);
+    public PlayerServiceImpl() {
+        playerDao = new PlayerDao();
     }
 
+    @Override
+    public boolean registerPlayer(Long teamId, String name, String position) {
+        LocalDateTime createdAt = LocalDateTime.now();
+        Player player = new Player(null, teamId, name, position, createdAt);
+        int result = playerDao.insert(player);
+        return result == 1;
+    }
 
-    public void updatePlayer() {
-        System.out.println();
+    @Override
+    public List<Player> getAllPlayers() {
+        return playerDao.getAllPlayers();
     }
 }
