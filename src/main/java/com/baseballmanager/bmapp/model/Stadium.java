@@ -1,4 +1,4 @@
-package com.baseballmanager.bmapp.model;
+package com.baseballmanager.bmapp.model.stadium;
 
 import lombok.*;
 
@@ -8,14 +8,9 @@ import java.time.LocalDateTime;
 
 @Getter
 @ToString
+@Builder
 public class Stadium {
     private Integer id;
     private String name;
-    private Timestamp createAt;
-    @Builder
-    public Stadium(int id, String name, Timestamp createAt) {
-        this.id = id;
-        this.name = name;
-        this.createAt = createAt;
-    }
+    private Timestamp createdAt;
 }
