@@ -1,4 +1,4 @@
-package com.baseballmanager.bmapp.model.stadium;
+package com.baseballmanager.bmapp.model;
 
 import lombok.*;
 

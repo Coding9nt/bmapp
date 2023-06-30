@@ -3,6 +3,7 @@ package com.baseballmanager.bmapp.model;
 
 import lombok.*;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 @Getter
@@ -10,14 +11,14 @@ import java.time.LocalDateTime;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 
 public class Player {
-    private Long id;
+    private Integer id;
 
     private String name;
 
     private String position;
 
-    private LocalDateTime createdAt;
-    private Long teamId;
+    private Timestamp createdAt;
+    private Integer teamId;
 
     @Builder
     public Player(final String name,
@@ -26,7 +27,7 @@ public class Player {
         this.position = position;
     }
 
-    public void enrollTeam(final Long teamId) {
+    public void enrollTeam(final Integer teamId) {
         this.teamId = teamId;
     }
     
