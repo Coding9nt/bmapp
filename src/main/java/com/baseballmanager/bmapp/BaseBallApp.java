@@ -3,9 +3,11 @@ package com.baseballmanager.bmapp;
 
 import com.baseballmanager.bmapp.controller.player.PlayerController;
 import com.baseballmanager.bmapp.dao.PlayerDao;
+import com.baseballmanager.bmapp.model.OutPlayer;
 import com.baseballmanager.bmapp.model.Player;
 import com.baseballmanager.bmapp.service.PlayerService;
 import com.baseballmanager.bmapp.service.impl.PlayerServiceImpl;
+import com.baseballmanager.bmapp.view.OutPlayerView;
 import com.baseballmanager.bmapp.view.PlayerView;
 
 import java.util.List;
@@ -13,7 +15,6 @@ import java.util.Scanner;
 
 public class BaseBallApp {
 	private static PlayerController playerController;
-
 
 	public static void main(String[] args) {
 		playerController = new PlayerController(
@@ -53,6 +54,13 @@ public class BaseBallApp {
 				List<Player> players = playerController.getAllPlayers();
 				PlayerView playerView = new PlayerView();
 				playerView.displayAllPlayers(players);
+			} else if (input.equals("퇴출목록")) {
+				OutPlayerView outPlayerView = new OutPlayerView();
+				List<OutPlayer> outPlayers = playerController.getAlloutPlayers();
+				outPlayerView.displayAllOutPlayers(outPlayers);
+			} else if (input.startsWith("퇴출등록?")) {
+				String request = input;
+				playerController.handleRequest(request);
 			}
 		}
 	}

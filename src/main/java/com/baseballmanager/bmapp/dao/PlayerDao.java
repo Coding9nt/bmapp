@@ -29,7 +29,7 @@ public class PlayerDao {
     public List<Player> getAllPlayers() {
         List<Player> players = new ArrayList<>();
         try (Connection connection = DBConnection.getConnection()) {
-            String query = "SELECT * FROM player";
+            String query = "select * from player";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
@@ -38,8 +38,6 @@ public class PlayerDao {
                 String position = resultSet.getString("position");
                 LocalDateTime createdAt = resultSet.getTimestamp("created_at").toLocalDateTime();
                 int teamId = resultSet.getInt("team_id");
-                System.out.println("test:" + id);
-                System.out.println("test:" + name);
                 Player player = new Player(id,name, position, createdAt, teamId);
                 players.add(player);
             }
@@ -47,5 +45,20 @@ public class PlayerDao {
             e.printStackTrace();
         }
         return players;
+    }
+
+    public boolean updatePlayerTeamId(int playerId, Integer teamId) {
+        String query = "UPDATE player SET team_id = ? WHERE id = ?";
+        try (Connection connection = DBConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setObject(1, teamId);
+            preparedStatement.setInt(2, playerId);
+
+            int rowsAffected = preparedStatement.executeUpdate();
+            return rowsAffected > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }

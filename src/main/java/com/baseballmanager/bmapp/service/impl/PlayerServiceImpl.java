@@ -1,6 +1,7 @@
 package com.baseballmanager.bmapp.service.impl;
 
 import com.baseballmanager.bmapp.dao.PlayerDao;
+import com.baseballmanager.bmapp.model.OutPlayer;
 import com.baseballmanager.bmapp.model.Player;
 import com.baseballmanager.bmapp.service.PlayerService;
 import lombok.RequiredArgsConstructor;
