@@ -13,7 +13,7 @@ public class PlayerServiceImpl implements PlayerService {
                 .build();
 
         // 팀추가
-        player.enrollTeam(1L);
+        player.enrollTeam(1);
         System.out.println(player);
     }
 

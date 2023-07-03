@@ -18,6 +18,7 @@ public class StadiumDao {
 
         try(PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, name);
+
             return statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

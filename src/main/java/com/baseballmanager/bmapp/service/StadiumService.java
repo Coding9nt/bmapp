@@ -13,7 +13,7 @@ public class StadiumService {
     }
 
     // add stadium
-    public String createStadium(String sName) {
+    public String createStadium(String sName)  {
         int result = stadiumDao.createStadium(sName);
 
         if (result > 0) {
